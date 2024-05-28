@@ -1,0 +1,23 @@
+const int flex1 = A0, flex2 = A1;
+const int rly1 = 8, rly2 = 9;
+int flex1val = 0, flex2val = 0;
+int flex1out = 0, flex2out = 0;
+void setup() {
+  pinMode(rly1, OUTPUT);digitalWrite(rly1, HIGH);
+  pinMode(rly2, OUTPUT);digitalWrite(rly2, HIGH);
+  Serial.begin(9600);
+}
+void loop() {
+  flex1val = analogRead(flex1);
+  flex2val = analogRead(flex2);
+  flex1out = map(flex1val, 0, 1023, 0, 255);
+  flex2out = map(flex2val, 0, 1023, 0, 255);
+  Serial.print("Flex1 = ");  Serial.println(flex1out);delay(500);
+  Serial.print("Flex2 = ");  Serial.println(flex2out);delay(500);
+  if (flex1out >35) digitalWrite(rly1, LOW);
+  else digitalWrite(rly1, HIGH);
+  if (flex2out >35) digitalWrite(rly2, LOW);
+  else digitalWrite(rly2, HIGH);
+
+  delay(2);
+}
